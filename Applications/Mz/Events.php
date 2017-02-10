@@ -56,8 +56,30 @@ class Events
     */
    public static function onMessage($client_id, $message)
    {
-        // 向所有人发送 
-        //Gateway::sendToAll("$client_id said $message\r\n");
+        // 向所有人发送
+       $data = json_decode($message,true);
+       $from = $data['mine'];
+       $to = $data['to'];
+       switch ($data['type']){
+           case 'ping':
+               break;
+           case 'message':
+               Gateway::sendToUid(
+                   $to['id'],
+                   json_encode([
+                       'type' => 'message',
+                       'data' => array_merge($from,[
+                           'cid' => 0,
+                           'mine' => false,
+                           'fromid' => $from['id'],
+                           'timestamp' => time()
+                       ])
+                   ])
+               );
+               break;
+           default:
+               break;
+       }
    }
    
    /**

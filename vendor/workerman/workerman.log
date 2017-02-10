@@ -158,3 +158,17 @@ Stack trace:
 2016-12-15 13:46:38 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
 2016-12-15 13:46:57 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
 2016-12-15 13:46:57 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2017-02-10 14:50:44 exception 'Exception' with message 'You can't send(object) to client, you need to convert it to a string. ' in F:\www\workman\vendor\workerman\workerman-for-win\Protocols\Websocket.php:225
+Stack trace:
+#0 F:\www\workman\vendor\workerman\workerman-for-win\Connection\TcpConnection.php(242): Workerman\Protocols\Websocket::encode(Object(stdClass), Object(Workerman\Connection\TcpConnection))
+#1 F:\www\workman\vendor\workerman\gateway-worker-for-win\src\Gateway.php(562): Workerman\Connection\TcpConnection->send(Object(stdClass), false)
+#2 [internal function]: GatewayWorker\Gateway->onWorkerMessage(Object(Workerman\Connection\TcpConnection), Array)
+#3 F:\www\workman\vendor\workerman\workerman-for-win\Connection\TcpConnection.php(429): call_user_func(Array, Object(Workerman\Connection\TcpConnection), Array)
+#4 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #17)
+#5 F:\www\workman\vendor\workerman\workerman-for-win\Events\Select.php(257): call_user_func_array(Array, Array)
+#6 F:\www\workman\vendor\workerman\workerman-for-win\Worker.php(779): Workerman\Events\Select->loop()
+#7 F:\www\workman\vendor\workerman\gateway-worker-for-win\src\Gateway.php(264): Workerman\Worker->run()
+#8 F:\www\workman\vendor\workerman\workerman-for-win\Worker.php(439): GatewayWorker\Gateway->run()
+#9 F:\www\workman\vendor\workerman\workerman-for-win\Worker.php(348): Workerman\Worker::runAllWorkers()
+#10 F:\www\workman\Applications\Mz\start_gateway.php(65): Workerman\Worker::runAll()
+#11 {main}
